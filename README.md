@@ -86,7 +86,7 @@ Used for infrastructure as code developed by hashicorp
   The main file is where resources should be defined, in larger projects
   it may make sense to separate resources into logical groups.
 
-  ```json
+  ```tf
   resource "aws_vpc" "my_vpc" {
     cidr_block       = "10.0.0.0/16"
     instance_tenancy = "default"
