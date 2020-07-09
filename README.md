@@ -134,7 +134,7 @@ Used for infrastructure as code developed by hashicorp
 
   Change the tag deployed with the original vpc resource in main.tf.
 
-  ```diff tf
+  ```diff
     resource "aws_vpc" "my_vpc" {
     cidr_block       = "10.0.0.0/16"
     instance_tenancy = "default"
@@ -164,7 +164,7 @@ Used for infrastructure as code developed by hashicorp
 
   Open main.tf and update the tag block with a reference to the variable.
 
-  ```tf
+  ```diff
   resource "aws_vpc" "my_vpc" {
     cidr_block       = "10.0.0.0/16"
     instance_tenancy = "default"
