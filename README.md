@@ -35,7 +35,7 @@ Used for infrastructure as code developed by hashicorp
   Instead of logging in to the gui or the portal, written in code, similar to
   json.
 
-  ```
+  ```tf
   resource "google_storage_bucket" "state_bucket" {
     name     = "terraform-state-bucket"
     location = var.region
@@ -69,7 +69,7 @@ Used for infrastructure as code developed by hashicorp
   The provider informs the terraform client which service to interact with,
   this also installs the required plugins for that service.
 
-  ```
+  ```tf
   provider "aws" {
     access_key = ""
     secret_key = ""
@@ -86,7 +86,7 @@ Used for infrastructure as code developed by hashicorp
   The main file is where resources should be defined, in larger projects
   it may make sense to separate resources into logical groups.
 
-  ```
+  ```tf
   resource "aws_vpc" "my_vpc" {
     cidr_block       = "10.0.0.0/16"
     instance_tenancy = "default"
@@ -134,14 +134,14 @@ Used for infrastructure as code developed by hashicorp
 
   Change the tag deployed with the original vpc resource in main.tf.
 
-  ```
+  ```diff tf
     resource "aws_vpc" "my_vpc" {
     cidr_block       = "10.0.0.0/16"
     instance_tenancy = "default"
 
     tags = {
-+++   Name = "vpc_001"
----   Name = "my_vpc"
++     Name = "vpc_001"
+-     Name = "my_vpc"
     }
   }
   ```
@@ -155,7 +155,7 @@ Used for infrastructure as code developed by hashicorp
   Create a variables.tf file, use this file to store definitions of the 
   variables used to configure resources.
 
-  ```
+  ```tf
     variable "vpc_name" {
       type = string
       default = "default_name"
@@ -164,21 +164,21 @@ Used for infrastructure as code developed by hashicorp
 
   Open main.tf and update the tag block with a reference to the variable.
 
-  ```
+  ```tf
   resource "aws_vpc" "my_vpc" {
     cidr_block       = "10.0.0.0/16"
     instance_tenancy = "default"
 
     tags = {
-+++   Name = var.vpc_name
----   Name = "vpc_001"
++     Name = var.vpc_name
+-     Name = "vpc_001"
     }
   }
   ```
 
   Try referencing different variable types list and map.
 
-  ```
+  ```tf
   variable "mylist" {
     type    = list
     default = ["value1", "value2"]
@@ -214,7 +214,7 @@ Used for infrastructure as code developed by hashicorp
   Add a subnet resource to main.tf and configure the vpc_id to the id attribute
   of the vpc.
 
-  ```
+  ```tf
   resource "aws_subnet" "my_subnet" {
     vpc_id     = aws_vpc.my_vpc.id
     cidr_block = "10.0.1.0/24"
@@ -235,7 +235,7 @@ Used for infrastructure as code developed by hashicorp
 
   Create output.tf and configure it to output the id of the vpc.
 
-  ```
+  ```tf
   output "vpc_id" {
     value = aws_vpc.my_vpc.id
   }
@@ -259,7 +259,7 @@ Used for infrastructure as code developed by hashicorp
 
   * for expressions: loop over lists and maps.
 
-  ```
+  ```tf
   resource "aws_instance" "my_vm" {
     count = 3
     ami           = "ami-0a8cd349f3bde8bc8"
@@ -291,7 +291,7 @@ Used for infrastructure as code developed by hashicorp
 
   Calling child modules:
 
-  ```
+  ```tf
   module "vpc" {
   source = "./modules/vpc"
 
@@ -313,7 +313,7 @@ Used for infrastructure as code developed by hashicorp
   First the module you wish to output values from should be configured with an 
   output in outputs.tf:
 
-  ```
+  ```tf
   output "vpc_id" {
     value = aws_vpc.my_vpc.id
   }
@@ -322,7 +322,7 @@ Used for infrastructure as code developed by hashicorp
   Then configure the module which is going to recieve this configuration with 
   an input variable in variables.tf.
 
-  ```
+  ```tf
   variable "vpc_id" {
     type = string
   }
@@ -331,7 +331,7 @@ Used for infrastructure as code developed by hashicorp
   Make sure that the resource you intend to configure has the variable
   as the correct arguments value.
 
-  ```
+  ```tf
   resource "aws_subnet" "my_subnet" {
     vpc_id     = var.vpc_id
     cidr_block = "10.0.1.0/24"
@@ -340,7 +340,7 @@ Used for infrastructure as code developed by hashicorp
 
   Then specify the output as an input variable in the parent module.
 
-  ```
+  ```tf
   module "subnet" {
     source = "./subnet"
 
@@ -391,7 +391,7 @@ Used for infrastructure as code developed by hashicorp
 
   A basic ignore file for a terraform project:
 
-  ```
+  ```gitignore
   # Local .terraform directories
   **/.terraform/*
 
