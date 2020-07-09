@@ -130,7 +130,7 @@ Used for infrastructure as code developed by hashicorp
 
   https://www.terraform.io/docs/state/index.html
 
-## How to update deployed resources
+## How to Update Deployed Resources
 
   Change the tag deployed with the original vpc resource in main.tf.
 
