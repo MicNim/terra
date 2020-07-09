@@ -1,4 +1,26 @@
-# What is Terraform 
+## Contents
+
+  - [What is Teraform](##What-is-Terraform)
+  - [Infrastructure](##Infrastructure)
+  - [IAC Infrastructure as Code](##IAC-Infrastructure-as-Code)
+  - [Install Terraform](##Install-Terraform)
+  - [Create First Resource](##Create-First-Resource)
+    - [provider.tf](###provider.tf)
+    - [main.tf](###main.tf)
+  - [Init Plan Deploy Destroy](##Init-Plan-Deploy-Destroy)
+  - [State File](##State-File)
+  - [How to Update Deployed Resources](##How-to-Update-Deployed-Resources)
+  - [Variables](##Variables)
+  - [Resource Attributes](##Resource-Attributes)
+  - [Outputs](##Outputs)
+  - [Loops](##Loops)
+  - [Modules](##Modules)
+  - [Configuring One Module With Another Modules Output](##Configuring-One-Module-With-Another-Modules-Output)
+  - [Environment](##Environment)
+  - [Files to Ignore](##Files-to-Ignore)
+  - [Interesting Resources](##Interesting-Resources)
+
+## What is Terraform 
 
 Used for infrastructure as code developed by hashicorp
 
@@ -10,7 +32,7 @@ Used for infrastructure as code developed by hashicorp
 
   https://www.terraform.io/docs/providers/index.html
 
-## IAC infrastructure as code
+## IAC Infrastructure as Code
 
   Instead of logging in to the gui or the portal, written in code, similar to
   json.
@@ -34,7 +56,7 @@ Used for infrastructure as code developed by hashicorp
 
   [awesome](https://github.com/Azure/awesome-terraform)
 
-## Create first resource
+## Create First Resource
 
   First create a folder called terraform.
 
